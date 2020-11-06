@@ -305,14 +305,12 @@ class TimeSoftmaxWithLoss:
         if ts.ndim == 3:  # 訓練標籤是one-hot向量時
             ts = ts.argmax(axis=2)
 
-        mask = (ts != self.ignore_label)
-        print("##### [1] mask:", mask)
+        mask = np.array(ts != self.ignore_label)
 
         # 整合批次與時間序列（reshape）
         xs = xs.reshape(N * T, V)
         ts = ts.reshape(N * T)
         mask = mask.reshape(N * T)
-        print("##### [2] mask:", mask)
 
         ys = softmax(xs)
         ls = np.log(ys[np.arange(N * T), ts])
