@@ -51,6 +51,7 @@ class Trainer:
                     elapsed_time = time.time() - start_time
                     print('| epoch %d |  iter %d / %d | time %d[s] | loss %.2f'
                           % (self.current_epoch + 1, iters + 1, max_iters, elapsed_time, avg_loss))
+                    sys.stdout.flush()
                     self.loss_list.append(float(avg_loss))
                     total_loss, loss_count = 0, 0
 

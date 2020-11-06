@@ -56,6 +56,7 @@ for epoch in range(max_epoch):
     acc = float(correct_num) / len(x_test)
     acc_list.append(acc)
     print('\nval acc %.3f%%' % (acc * 100))
+    sys.stdout.flush()
 
 
 model.save_params()

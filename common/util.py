@@ -256,6 +256,7 @@ def eval_seq2seq(model, question, correct, id_to_char,
             if is_windows:
                 mark = 'X'
             print(mark + ' ' + guess)
+        sys.stdout.flush()
         # print('---')
 
     return 1 if guess == correct else 0
