@@ -22,9 +22,9 @@ x_train, x_test = x_train[:, ::-1], x_test[:, ::-1]
 # 設定超參數
 vocab_size = len(char_to_id)
 wordvec_size = 16
-hidden_size = 256
-batch_size = 128
-max_epoch = 10
+hidden_size = 256 * 2
+batch_size = 128 * 2
+max_epoch = 100
 max_grad = 5.0
 
 model = AttentionSeq2seq(vocab_size, wordvec_size, hidden_size)
@@ -45,7 +45,7 @@ for epoch in range(max_epoch):
     correct_num = 0
     for i in range(total):
         question, correct = x_test[[i]], t_test[[i]]
-        verbose = i % 100 == 0
+        verbose = i % 10 == 0
         if verbose:
             print("[%d]"%(i,), end = ' ')
         correct_num += eval_seq2seq(model, question, correct,
