@@ -12,7 +12,7 @@ from attention_seq2seq import AttentionSeq2seq
 # 載入資料
 # x_train, t_train = sequence.load_data_without_test('ner_train.txt')
 # x_test, t_test = sequence.load_data_without_test('ner_valid.txt')
-(x_train, t_train), (x_test, t_test) = sequence.load_data('ner_train.txt')
+(x_train, t_train), (x_test, t_test) = sequence.load_data('ner_valid.txt')
 char_to_id, id_to_char = sequence.get_vocab()
 
 # 反轉輸入內容
@@ -44,11 +44,11 @@ for epoch in range(max_epoch):
     correct_num = 0
     for i in range(total):
         question, correct = x_test[[i]], t_test[[i]]
-        verbose = i < 10
+        verbose = i % 100 == 0
         correct_num += eval_seq2seq(model, question, correct,
                                     id_to_char, verbose, is_reverse=True)
-        if i % 100 == 0:
-            print("[%d]" % (i, ), end = " ")
+        # if i % 100 == 0:
+        #     print("[%d]" % (i, ), end = " ")
 
     acc = float(correct_num) / len(x_test)
     acc_list.append(acc)
