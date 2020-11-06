@@ -241,8 +241,8 @@ def eval_seq2seq(model, question, correct, id_to_char,
             question = question[::-1]
 
         colors = {'ok': '\033[92m', 'fail': '\033[91m', 'close': '\033[0m'}
-        print('Q', question)
-        print('T', correct)
+        print('Q:', question, end = ', ')
+        print('T:', correct, end = ', ')
 
         is_windows = os.name == 'nt'
 
@@ -256,7 +256,7 @@ def eval_seq2seq(model, question, correct, id_to_char,
             if is_windows:
                 mark = 'X'
             print(mark + ' ' + guess)
-        print('---')
+        # print('---')
 
     return 1 if guess == correct else 0
 
