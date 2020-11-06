@@ -20,7 +20,7 @@ def _update_vocab(txt):
 
 
 def load_data(file_name='addition.txt', seed=1984):
-    x, t = load_data_no_test(file_name, seed)
+    x, t = load_data_without_test(file_name, seed)
 
     # 10% for validation set
     split_at = len(x) - len(x) // 10
