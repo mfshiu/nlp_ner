@@ -12,7 +12,8 @@ from attention_seq2seq import AttentionSeq2seq
 # 載入資料
 # x_train, t_train = sequence.load_data_without_test('ner_train.txt')
 # x_test, t_test = sequence.load_data_without_test('ner_valid.txt')
-(x_train, t_train), (x_test, t_test) = sequence.load_data('ner_valid.txt')
+# (x_train, t_train), (x_test, t_test) = sequence.load_data('ner_valid.txt')
+(x_train, t_train), (x_test, t_test) = sequence.load_data('ner_train.txt')
 char_to_id, id_to_char = sequence.get_vocab()
 
 # 反轉輸入內容
