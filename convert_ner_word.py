@@ -8,8 +8,8 @@ separator = ' '
 
 def generate_out_line(question, answer):
     if len(question) > max_question_length:
-        print("\tExceed max question length %d: %s" % (max_question_length, question))
         question = question[: max_question_length]
+        print("\nExceed max question length %d, cut to: %s\n" % (max_question_length, question))
 
     question = question.ljust(max_question_length)
     answer = answer.ljust(max_answer_length)

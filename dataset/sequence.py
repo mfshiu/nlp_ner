@@ -20,6 +20,17 @@ def _update_vocab(txt):
 
 
 def load_data(file_name='addition.txt', seed=1984):
+    x, t = load_data_no_test(file_name, seed)
+
+    # 10% for validation set
+    split_at = len(x) - len(x) // 10
+    (x_train, x_test) = x[:split_at], x[split_at:]
+    (t_train, t_test) = t[:split_at], t[split_at:]
+
+    return (x_train, t_train), (x_test, t_test)
+
+
+def load_data_without_test(file_name, seed=1972):
     file_path = os.path.dirname(os.path.abspath(__file__)) + '/' + file_name
 
     if not os.path.exists(file_path):
@@ -56,12 +67,7 @@ def load_data(file_name='addition.txt', seed=1984):
     x = x[indices]
     t = t[indices]
 
-    # 10% for validation set
-    split_at = len(x) - len(x) // 10
-    (x_train, x_test) = x[:split_at], x[split_at:]
-    (t_train, t_test) = t[:split_at], t[split_at:]
-
-    return (x_train, t_train), (x_test, t_test)
+    return x, t
 
 
 def get_vocab():
