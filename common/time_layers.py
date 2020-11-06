@@ -314,9 +314,6 @@ class TimeSoftmaxWithLoss:
 
         ys = softmax(xs)
         ls = np.log(ys[np.arange(N * T), ts])
-
-        print("##### type of ls:", type(ls))
-        print("##### type of mask:", type(mask))
         ls *= mask  # 在ignore_label中，該資料的損失變成0
         loss = -np.sum(ls)
         loss /= mask.sum()
