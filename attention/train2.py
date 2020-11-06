@@ -45,6 +45,8 @@ for epoch in range(max_epoch):
     for i in range(total):
         question, correct = x_test[[i]], t_test[[i]]
         verbose = i % 100 == 0
+        if verbose:
+            print("[%d]", end = ' ')
         correct_num += eval_seq2seq(model, question, correct,
                                     id_to_char, verbose, is_reverse=True)
         # if i % 100 == 0:
