@@ -23,9 +23,9 @@ def load_data(file_name='addition.txt', seed=1984):
     x, t = load_data_without_test(file_name, seed)
 
     # 10% for validation set
-    split_at = min(1000, len(x) - len(x) // 10)
-    (x_train, x_test) = x[:split_at], x[split_at:]
-    (t_train, t_test) = t[:split_at], t[split_at:]
+    train_size = len(x) - min(1000, len(x) / 10)
+    (x_train, x_test) = x[:train_size], x[train_size:]
+    (t_train, t_test) = t[:train_size], t[train_size:]
 
     return (x_train, t_train), (x_test, t_test)
 
