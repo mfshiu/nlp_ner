@@ -21,10 +21,10 @@ x_train, x_test = x_train[:, ::-1], x_test[:, ::-1]
 
 # 設定超參數
 vocab_size = len(char_to_id)
-wordvec_size = 16
-hidden_size = 256 * 2
-batch_size = 128 * 2
-max_epoch = 100
+wordvec_size = 16 * 2
+hidden_size = 256 * 3
+batch_size = 128 * 3
+max_epoch = 1000
 max_grad = 5.0
 
 model = AttentionSeq2seq(vocab_size, wordvec_size, hidden_size)
