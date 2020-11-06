@@ -306,13 +306,13 @@ class TimeSoftmaxWithLoss:
             ts = ts.argmax(axis=2)
 
         mask = (ts != self.ignore_label)
-        print("##### [1] mask:", type(mask))
+        print("##### [1] mask:", mask)
 
         # 整合批次與時間序列（reshape）
         xs = xs.reshape(N * T, V)
         ts = ts.reshape(N * T)
         mask = mask.reshape(N * T)
-        print("##### [2] mask:", type(mask))
+        print("##### [2] mask:", mask)
 
         ys = softmax(xs)
         ls = np.log(ys[np.arange(N * T), ts])
