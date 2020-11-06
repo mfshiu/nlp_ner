@@ -10,8 +10,9 @@ from common.util import eval_seq2seq
 from attention_seq2seq import AttentionSeq2seq
 
 # 載入資料
-x_train, t_train = sequence.load_data_without_test('ner_train.txt')
-x_test, t_test = sequence.load_data_without_test('ner_valid.txt')
+# x_train, t_train = sequence.load_data_without_test('ner_train.txt')
+# x_test, t_test = sequence.load_data_without_test('ner_valid.txt')
+(x_train, t_train), (x_test, t_test) = sequence.load_data('ner_train.txt')
 char_to_id, id_to_char = sequence.get_vocab()
 
 # 反轉輸入內容
@@ -34,19 +35,24 @@ trainer = Trainer(model, optimizer)
 
 acc_list = []
 for epoch in range(max_epoch):
+    print("Training epoch %d" % (epoch,))
     trainer.fit(x_train, t_train, max_epoch=1,
                 batch_size=batch_size, max_grad=max_grad)
 
+    total = len(x_test)
+    print("Evaluating epoch %d, Total: %d" % (epoch, total))
     correct_num = 0
-    for i in range(len(x_test)):
+    for i in range(total):
         question, correct = x_test[[i]], t_test[[i]]
         verbose = i < 10
         correct_num += eval_seq2seq(model, question, correct,
                                     id_to_char, verbose, is_reverse=True)
+        if i % 100 == 0:
+            print("[%d]" % (i, ), end = " ")
 
     acc = float(correct_num) / len(x_test)
     acc_list.append(acc)
-    print('val acc %.3f%%' % (acc * 100))
+    print('\nval acc %.3f%%' % (acc * 100))
 
 
 model.save_params()
