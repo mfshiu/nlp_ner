@@ -62,8 +62,8 @@ for i in range(total):
     guess = ''.join([id_to_char[int(c)] for c in guess])
     question = question.strip()[::-1]
     if len(question) > 0:
-        out_line = question.strip() + " " + guess.strip() + "\n"
-        out_lines.append(out_line)
+        out_line = question.strip() + " " + guess.strip()
+        out_lines.append(out_line + "\n")
         print("[%d] %s"%(i, out_line))
     else:
         out_lines.append("\n")
