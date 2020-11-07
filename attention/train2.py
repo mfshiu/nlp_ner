@@ -1,3 +1,4 @@
+# https://github.com/mfshiu/nlp_ner.git
 # coding: utf-8
 import sys
 sys.path.append('..')
@@ -10,10 +11,6 @@ from common.util import eval_seq2seq
 from attention_seq2seq import AttentionSeq2seq
 
 # 載入資料
-# x_train, t_train = sequence.load_data_without_test('ner_train.txt')
-# x_test, t_test = sequence.load_data_without_test('ner_valid.txt')
-# (x_train, t_train), (x_test, t_test) = sequence.load_data('ner_10000.txt')
-# (x_train, t_train), (x_test, t_test) = sequence.load_data('ner_valid.txt')
 (x_train, t_train), (x_test, t_test) = sequence.load_data('ner_train.txt')
 char_to_id, id_to_char = sequence.get_vocab()
 
@@ -29,8 +26,6 @@ max_epoch = 100
 max_grad = 5.0
 
 model = AttentionSeq2seq(vocab_size, wordvec_size, hidden_size)
-# model = Seq2seq(vocab_size, wordvec_size, hidden_size)
-# model = PeekySeq2seq(vocab_size, wordvec_size, hidden_size)
 
 optimizer = Adam()
 trainer = Trainer(model, optimizer)
