@@ -40,21 +40,13 @@ with open(test_file) as fp:
         if len(q) > 29:
             q = q[:29]
         questions.append(q.ljust(29)[::-1])
-        # if len(q) > 0:
-        #     questions.append(q.ljust(29))
-        # else:
-        #     questions.append("")
+
 ans = "_O     "
 x = np.zeros((len(questions), len(questions[0])), dtype=np.int)
 t = np.zeros((len(questions), len(ans)), dtype=np.int)
 for i, sentence in enumerate(questions):
     x[i] = [char_to_id[c] for c in list(sentence)]
     t[i] = [char_to_id[c] for c in list(ans)]
-    # if len(sentence) > 0:
-    #     x[i] = [char_to_id[c] for c in list(sentence)]
-    #     t[i] = [char_to_id[c] for c in list(ans)]
-    # else:
-    #     x[i], t[i] = [0]
 
 total = len(x)
 for i in range(total):
@@ -70,8 +62,8 @@ for i in range(total):
     guess = ''.join([id_to_char[int(c)] for c in guess])
     question = question.strip()[::-1]
     if len(question) > 0:
-        out_line = question.strip() + " " + guess.strip()
-        out_lines.append(question + " " + guess)
+        out_line = question.strip() + " " + guess.strip() + "\n"
+        out_lines.append(out_line)
         print("[%d] %s"%(i, out_line))
     else:
         out_lines.append("\n")
