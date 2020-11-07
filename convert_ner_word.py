@@ -36,6 +36,8 @@ def convert(source_file, target_file):
                     output_lines.append(out_line + "\n")
                 else:
                     print("\nWrong source line format: [%d] %s" % (cnt, in_line, ))
+            # else:
+            #     output_lines.append("\n")
 
     print("\nWriting to: %s ..." % (target_file,), end=" ")
     with open(target_file, 'w') as fp:
