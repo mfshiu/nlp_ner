@@ -42,7 +42,7 @@ def load_data_without_test(file_name, shuffle=True):
     for line in open(file_path, 'r'):
         idx = line.find('_')
         questions.append(line[:idx])
-        answers.append(line[idx:-1])
+        answers.append(line[idx:-1].ljust(15))
 
     # create vocab dict
     for i in range(len(questions)):
