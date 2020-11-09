@@ -22,7 +22,7 @@ vocab_size = len(char_to_id)
 wordvec_size = int(16/1)
 hidden_size = int(256*2)
 batch_size = int(128*2)
-max_epoch = 100
+max_epoch = int(len(x_train) / 200)
 max_grad = 5.0
 
 model = AttentionSeq2seq(vocab_size, wordvec_size, hidden_size)
@@ -32,7 +32,7 @@ trainer = Trainer(model, optimizer)
 
 acc_list = []
 for epoch in range(max_epoch):
-    print("Training epoch %d" % (epoch,))
+    print("Training epoch %d / %d" % (epoch, max_epoch))
     trainer.fit(x_train, t_train, max_epoch=1,
                 batch_size=batch_size, max_grad=max_grad)
 
